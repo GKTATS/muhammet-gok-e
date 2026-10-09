@@ -3,218 +3,384 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muhammet ❤️ Gökçe</title>
+<title>Muhammet ♡ Gökçe</title>
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+:root{
+ --pink:#e96f98;
+ --dark:#754158;
+ --light:#fff2f7;
+ --rose:#f7d3e0;
 }
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(145deg, #fff0f5, #ffe0eb, #fff7fa);
-  color: #754052;
-  font-family: Georgia, serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 15px;
-  overflow-x: hidden;
+html{scroll-behavior:smooth}
+body{
+ margin:0;
+ font-family:Georgia,serif;
+ color:var(--dark);
+ background:#fff7fa;
+ overflow-x:hidden;
 }
-.card {
-  width: 100%;
-  max-width: 520px;
-  background: rgba(255,255,255,0.88);
-  padding: 38px 25px;
-  border: 1px solid #ffffff;
-  border-radius: 28px;
-  box-shadow: 0 15px 50px rgba(194,91,125,0.16);
-  text-align: center;
-  position: relative;
-  z-index: 2;
+button{font-family:inherit;cursor:pointer}
+.bg-glow{
+ position:fixed;inset:0;z-index:-2;
+ background:
+ radial-gradient(ellipse at 10% 15%,#ffe1ec 0,transparent 40%),
+ radial-gradient(ellipse at 90% 70%,#f8d9e6 0,transparent 40%),
+ linear-gradient(145deg,#fff9fb,#ffedf4);
 }
-.top-heart {
-  font-size: 55px;
-  animation: heartbeat 1.5s infinite;
+#hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
+.floating{
+ position:absolute;bottom:-50px;
+ animation:floatUp linear forwards;
+ opacity:0;
 }
-h1 {
-  font-size: clamp(30px, 8vw, 43px);
-  color: #d65f86;
-  margin: 16px 0 10px;
+@keyframes floatUp{
+ 10%{opacity:.65}
+ 100%{transform:translateY(-115vh) rotate(35deg);opacity:0}
 }
-.subtitle {
-  font-size: 15px;
-  letter-spacing: 2px;
-  color: #b87990;
-  text-transform: uppercase;
+@keyframes pulse{
+ 50%{transform:scale(1.12)}
 }
-.intro {
-  font-size: 17px;
-  line-height: 1.9;
-  margin: 24px 0;
+@keyframes fadeIn{
+ from{opacity:0;transform:translateY(20px)}
+ to{opacity:1;transform:translateY(0)}
 }
-button {
-  border: none;
-  padding: 15px 24px;
-  background: linear-gradient(135deg, #e982a4, #d85d86);
-  color: white;
-  border-radius: 30px;
-  font-size: 16px;
-  font-family: inherit;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(216,93,134,0.2);
-  transition: transform .2s;
+@keyframes shine{
+ 0%,100%{opacity:.45}
+ 50%{opacity:1}
 }
-button:hover {
-  transform: translateY(-2px);
+.hero{
+ min-height:100svh;
+ display:flex;align-items:center;justify-content:center;
+ text-align:center;padding:45px 20px;
+ position:relative;
 }
-#letter {
-  display: none;
-  margin-top: 28px;
-  padding: 23px 18px;
-  background: #fff1f6;
-  border: 1px solid #f8d5e1;
-  border-radius: 20px;
-  animation: appear .7s ease;
+.hero-card{
+ width:100%;max-width:760px;
+ padding:48px 25px;
+ border:1px solid #ffffff;
+ background:rgba(255,255,255,.66);
+ border-radius:34px;
+ box-shadow:0 20px 70px #df9bb51f;
+ backdrop-filter:blur(10px);
+ animation:fadeIn 1s ease;
 }
-#letter h2 {
-  color: #d65f86;
-  font-size: 27px;
+.eyebrow{
+ letter-spacing:4px;text-transform:uppercase;
+ font-size:11px;color:#b87992;
 }
-#letter p {
-  font-size: 16px;
-  line-height: 2;
+.big-heart{
+ font-size:57px;display:inline-block;
+ margin:20px 0 8px;animation:pulse 1.8s infinite;
 }
-.signature {
-  color: #d65f86;
-  font-size: 19px !important;
-  font-weight: bold;
+h1{
+ font-size:clamp(39px,9vw,72px);
+ line-height:1.12;margin:10px 0;
+ color:#d85e88;font-weight:normal;
 }
-.surprise {
-  display: none;
-  margin-top: 20px;
-  animation: appear .7s ease;
+.amp{color:#d9a0b5;font-style:italic}
+.hero-text{
+ font-size:17px;line-height:1.9;
+ max-width:480px;margin:22px auto;color:#926477;
 }
-.surprise p {
-  color: #d65f86;
-  font-size: 20px !important;
+.pill{
+ display:inline-block;padding:9px 17px;
+ border:1px solid #f0c6d7;border-radius:30px;
+ color:#bd6c8c;font-size:12px;letter-spacing:1px;
+ margin:8px 0 22px;
 }
-.heart {
-  position: fixed;
-  bottom: -40px;
-  pointer-events: none;
-  opacity: 0;
-  z-index: 1;
-  animation: floatUp linear forwards;
+.main-btn{
+ border:0;border-radius:30px;padding:15px 25px;
+ background:linear-gradient(135deg,#ed8daf,#d65c86);
+ color:white;font-size:15px;
+ box-shadow:0 8px 25px #d65c8630;
+ transition:.25s;
 }
-.footer {
-  margin-top: 28px;
-  font-size: 12px;
-  color: #bd8b9d;
-  letter-spacing: 1px;
+.main-btn:hover{transform:translateY(-3px);box-shadow:0 12px 28px #d65c8640}
+.scroll-note{
+ margin-top:35px;font-size:11px;letter-spacing:2px;
+ color:#c39aaa;animation:shine 2s infinite;
 }
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.12); }
+.section{padding:75px 20px;position:relative}
+.inner{max-width:850px;margin:auto}
+.section-tag{
+ color:#c17c97;text-transform:uppercase;
+ letter-spacing:3px;font-size:11px;text-align:center;
 }
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0;
-  }
-  15% { opacity: .65; }
-  100% {
-    transform: translateY(-110vh) rotate(35deg);
-    opacity: 0;
-  }
+.section-title{
+ font-weight:normal;text-align:center;
+ font-size:clamp(29px,6vw,42px);
+ color:#cf6489;margin:13px 0 15px;
 }
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.section-desc{
+ text-align:center;line-height:1.9;
+ color:#a17a8b;font-size:15px;
+ max-width:570px;margin:0 auto 35px;
 }
-@media (max-width: 400px) {
-  .card { padding: 30px 18px; }
-  .intro { font-size: 16px; }
+.divider{
+ width:65px;height:2px;margin:20px auto 30px;
+ background:linear-gradient(90deg,transparent,#e9a0b9,transparent);
+}
+.cards{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:15px;
+}
+.mini-card{
+ background:#ffffffb8;border:1px solid #fff;
+ padding:25px 17px;border-radius:22px;
+ text-align:center;box-shadow:0 8px 30px #c9859c0d;
+ transition:.25s;
+}
+.mini-card:hover{transform:translateY(-5px)}
+.mini-icon{font-size:29px;margin-bottom:12px}
+.mini-card h3{font-weight:normal;font-size:18px;color:#ce6488}
+.mini-card p{font-size:13px;line-height:1.8;color:#987184}
+.letter-section{padding-top:65px;padding-bottom:85px}
+.envelope{
+ max-width:650px;margin:auto;
+ background:linear-gradient(145deg,#fff,#fff4f8);
+ border:1px solid #f5d9e4;border-radius:28px;
+ padding:35px clamp(20px,6vw,48px);
+ box-shadow:0 18px 60px #cc88a51b;
+ text-align:center;
+}
+.envelope-icon{font-size:43px;margin-bottom:10px}
+.envelope h3{
+ font-size:29px;color:#cf6489;font-weight:normal;
+ margin:12px 0 20px;
+}
+.letter-copy{
+ display:none;text-align:left;
+ font-size:16px;line-height:2;color:#805368;
+ animation:fadeIn .7s ease;
+}
+.letter-copy p{margin:0 0 19px}
+.letter-copy .sign{
+ text-align:right;color:#d05f88;font-size:20px;
+ margin-top:28px;
+}
+#letterButton{margin-top:12px}
+.secret-card{
+ max-width:650px;margin:auto;
+ padding:32px 24px;border-radius:25px;
+ background:linear-gradient(140deg,#fbe1eb,#fff4f8);
+ border:1px solid white;text-align:center;
+}
+.secret-card p{line-height:1.9;color:#926477}
+.secret-text{display:none;animation:fadeIn .7s ease}
+.secret-text h3{color:#d15e88;font-weight:normal;font-size:25px}
+.memory-grid{
+ display:grid;grid-template-columns:1fr 1fr;gap:16px;
+}
+.memory{
+ background:#ffffffad;border:1px solid #fff;
+ border-radius:20px;padding:24px 18px;text-align:center;
+}
+.memory span{font-size:29px}
+.memory h3{font-weight:normal;color:#cf6489;font-size:18px}
+.memory p{font-size:13px;line-height:1.8;color:#987184}
+.final{
+ padding:95px 20px;text-align:center;
+ background:linear-gradient(180deg,transparent,#ffe7f0);
+}
+.final-heart{font-size:42px;animation:pulse 1.7s infinite}
+.final h2{font-weight:normal;color:#d15e88;font-size:clamp(30px,7vw,45px)}
+.final p{max-width:500px;margin:20px auto;line-height:2;color:#926477}
+footer{
+ text-align:center;padding:25px 15px;
+ font-size:11px;letter-spacing:2px;color:#bc8a9e;
+}
+@media(max-width:600px){
+ .hero-card{padding:38px 20px;border-radius:27px}
+ .cards{grid-template-columns:1fr}
+ .mini-card{padding:21px}
+ .section{padding:60px 17px}
+ .memory-grid{grid-template-columns:1fr}
+ .letter-copy{font-size:15px}
 }
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="top-heart">💗</div>
-  <div class="subtitle">Küçük bir hikâye, güzel bir his</div>
-  <h1>Muhammet & Gökçe</h1>
-  <div class="intro">
-    Bazen biri gelir...<br>
-    sıradan günleri güzelleştirir,<br>
-    küçük anları unutulmaz yapar. 🌷
-  </div>
-  <button id="letterButton" onclick="openLetter()">
-    Sana bir mektubum var 💌
+<div class="bg-glow"></div>
+<div id="hearts"></div>
+<header class="hero">
+ <div class="hero-card">
+  <div class="eyebrow">Küçük bir sayfa, kocaman bir his</div>
+  <div class="big-heart">♡</div>
+  <h1>Muhammet<br><span class="amp">&</span> Gökçe</h1>
+  <div class="pill">İKİNİZE ÖZEL BİR KÖŞE ♡</div>
+  <p class="hero-text">
+   Bazı insanlar gününe güzellik katar.<br>
+   Bazı gülüşler aklında kalır.<br>
+   Bazı hislerse küçük bir sayfaya sığmayacak kadar güzeldir.
+  </p>
+  <button class="main-btn" onclick="document.getElementById('letterSection').scrollIntoView({behavior:'smooth'})">
+   Hikâyemize göz at ♡
   </button>
-  <div id="letter">
-    <h2>Canım Gökçe ❤️</h2>
+  <div class="scroll-note">AŞAĞIDA KÜÇÜK BİR SÜRPRİZ VAR ↓</div>
+ </div>
+</header>
+<section class="section">
+ <div class="inner">
+  <div class="section-tag">Biraz sevgi, biraz mutluluk</div>
+  <h2 class="section-title">Güzel şeyler küçük anlarda saklıdır</h2>
+  <div class="divider"></div>
+  <p class="section-desc">
+   Her güzel hikâyenin kendine özgü bir dili vardır.
+   Bazen bir gülüş, bazen bir mesaj, bazen de sebepsiz bir mutluluk...
+  </p>
+  <div class="cards">
+   <div class="mini-card">
+    <div class="mini-icon">🌷</div>
+    <h3>Küçük mutluluklar</h3>
+    <p>Günün en sıradan anını bile güzelleştiren şeyler.</p>
+   </div>
+   <div class="mini-card">
+    <div class="mini-icon">💗</div>
+    <h3>Tatlı hisler</h3>
+    <p>Anlatması zor ama hissetmesi çok güzel duygular.</p>
+   </div>
+   <div class="mini-card">
+    <div class="mini-icon">✨</div>
+    <h3>Güzel anılar</h3>
+    <p>Hatırladıkça yüzünde bir gülümseme bırakan anlar.</p>
+   </div>
+  </div>
+ </div>
+</section>
+<section class="section letter-section" id="letterSection">
+ <div class="inner">
+  <div class="section-tag">Sana ayrılmış birkaç satır</div>
+  <h2 class="section-title">Küçük bir aşk mektubu</h2>
+  <p class="section-desc">Bazen kalpten gelen birkaç kelime her şeyi anlatmaya yeter. 💌</p>
+  <div class="envelope">
+   <div class="envelope-icon">💌</div>
+   <div class="eyebrow">Muhammet'ten Gökçe'ye</div>
+   <h3>Canım Gökçe</h3>
+   <p style="color:#ad8496;line-height:1.9">
+    Bu mektup sadece sana özel.<br>
+    Hazırsan açalım mı? ♡
+   </p>
+   <button class="main-btn" id="letterButton" onclick="openLetter()">
+    Mektubu aç 💗
+   </button>
+   <div class="letter-copy" id="letterCopy">
+    <p>Canım Gökçe,</p>
     <p>
-      Sana söylemek istediğim çok şey var ama
-      bazen en güzel hisler kelimelere sığmıyor.
+     Bazen birine söylemek istediğin çok şey olur ama
+     hangi kelimeyle başlayacağını bilemezsin.
+     Ben de sana hissettiklerimi anlatırken kelimelerin
+     bazen ne kadar küçük kaldığını fark ediyorum.
     </p>
     <p>
-      Seninle gülmek, birlikte geçirilen küçücük
-      anları bile hatırlamak ve yüzündeki o güzel
-      gülümsemeyi görmek benim için çok kıymetli.
+     Senin gülüşün, konuşmalarımız ve birlikte
+     geçirdiğimiz küçücük anlar bile günün en güzel
+     kısmı olabilir. Çünkü mutluluk her zaman büyük
+     şeylerde değil; bazen bir mesajda, bir bakışta
+     ya da aklına gelen birinde saklıdır.
     </p>
     <p>
-      Belki bu sadece küçük bir internet sayfası
-      ama içinde sana ayırdığım kocaman bir yer var.
-      Açtığında yüzünde küçücük de olsa bir gülümseme
-      oluşsun istedim. 💗
+     Bu sayfayı açtığında yüzünde küçük bir gülümseme
+     olsun istedim. Her şey kusursuz olmak zorunda değil.
+     Bazen en güzel şey, birinin seni düşünüp sana
+     özel bir şey hazırlamasıdır.
     </p>
-    <p class="signature">
-      İyi ki varsın, Gökçe. ❤️
+    <p>
+     Umarım önümüzde daha nice güzel anılar,
+     içten kahkahalar ve hatırladıkça mutlu olacağımız
+     günler olur.
     </p>
-    <button onclick="showSurprise()">
-      Bir şey daha var... ✨
-    </button>
-    <div class="surprise" id="surprise">
-      <p>💖</p>
-      <p>
-        Bu sayfanın en güzel yanı,<br>
-        senin için yapılmış olması.
-      </p>
-      <p class="signature">Senden bir gülümseme yeter. 🌸</p>
+    <p>İyi ki varsın. Bu küçük köşe hep sana gülümsesin. 🌷</p>
+    <p class="sign">Sevgiyle,<br>Muhammet ❤️</p>
+    <div style="text-align:center;margin-top:28px">
+     <button class="main-btn" onclick="showSecret()">Bir mesaj daha var... ✨</button>
     </div>
+   </div>
   </div>
-  <div class="footer">
-    MUHAMMET ❤️ GÖKÇE
+ </div>
+</section>
+<section class="section">
+ <div class="inner">
+  <div class="section-tag">Küçük bir hatırlatma</div>
+  <h2 class="section-title">Unutma...</h2>
+  <div class="divider"></div>
+  <div class="memory-grid">
+   <div class="memory">
+    <span>🌸</span>
+    <h3>Kendin ol</h3>
+    <p>En güzel yanın, olduğun kişi olman.</p>
+   </div>
+   <div class="memory">
+    <span>☁️</span>
+    <h3>Gülümsemeyi unutma</h3>
+    <p>Bazen bir gülümseme bütün günü değiştirebilir.</p>
+   </div>
+   <div class="memory">
+    <span>🦋</span>
+    <h3>Güzel şeylere inan</h3>
+    <p>En güzel anlar bazen hiç beklemediğin anda gelir.</p>
+   </div>
+   <div class="memory">
+    <span>💞</span>
+    <h3>Bu sayfa senin</h3>
+    <p>Çünkü bu küçük sürpriz senin için hazırlandı.</p>
+   </div>
   </div>
-</div>
+ </div>
+</section>
+<section class="section" id="secretSection">
+ <div class="inner">
+  <div class="section-tag">Sadece merak edenlere</div>
+  <h2 class="section-title">Gizli bir not 💗</h2>
+  <p class="section-desc">Burada sana ait minicik bir sürpriz saklı.</p>
+  <div class="secret-card">
+   <div style="font-size:36px">🎀</div>
+   <p>Acaba içinde ne yazıyor?</p>
+   <button class="main-btn" onclick="showSecret()">Gizli notu aç</button>
+   <div class="secret-text" id="secretText">
+    <h3>Gülümse Gökçe! 💖</h3>
+    <p>
+     Birinin aklına gelip yüzünde gülümseme oluşturmak,
+     bazen dünyadaki en güzel küçük mutluluktur.
+    </p>
+    <p><strong>Bu not da sana küçük bir gülümseme olsun. 🌷</strong></p>
+   </div>
+  </div>
+ </div>
+</section>
+<section class="final">
+ <div class="final-heart">💗</div>
+ <h2>Küçük bir sayfa,<br>güzel bir hatıra.</h2>
+ <p>
+  Belki ekran kapanır, sayfa biter...
+  ama güzel anların bıraktığı hisler
+  bazen uzun süre bizimle kalır.
+ </p>
+ <div style="font-size:24px">♡ &nbsp; ♡ &nbsp; ♡</div>
+</section>
+<footer>MUHAMMET ♡ GÖKÇE · SEVGİYLE HAZIRLANDI</footer>
 <script>
-function openLetter() {
-  document.getElementById("letter").style.display = "block";
-  document.getElementById("letterButton").style.display = "none";
+function openLetter(){
+ document.getElementById('letterCopy').style.display='block';
+ document.getElementById('letterButton').style.display='none';
+ for(let i=0;i<18;i++)makeHeart();
 }
-function showSurprise() {
-  document.getElementById("surprise").style.display = "block";
-  makeHearts(14);
+function showSecret(){
+ const el=document.getElementById('secretText');
+ el.style.display='block';
+ for(let i=0;i<15;i++)makeHeart();
 }
-function makeHearts(count) {
-  const symbols = ["💗", "💕", "💖", "♡", "🌸"];
-  for (let i = 0; i < count; i++) {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (16 + Math.random() * 22) + "px";
-    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 8500);
-  }
+function makeHeart(){
+ const el=document.createElement('span');
+ const symbols=['♡','💗','💕','🌸','✨','💖'];
+ el.className='floating';
+ el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+ el.style.left=Math.random()*100+'vw';
+ el.style.fontSize=(14+Math.random()*22)+'px';
+ el.style.animationDuration=(5+Math.random()*5)+'s';
+ document.getElementById('hearts').appendChild(el);
+ setTimeout(()=>el.remove(),10500);
 }
-setInterval(() => makeHearts(2), 2500);
+setInterval(()=>{if(Math.random()>.25)makeHeart()},1100);
 </script>
 </body>
 </html>
