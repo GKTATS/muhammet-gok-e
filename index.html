@@ -13,13 +13,13 @@ body{
 }
 button{font:inherit;cursor:pointer}
 .bg{
- position:fixed;inset:0;z-index:-1;
+ position:fixed;inset:0;z-index:-2;
  background:
- radial-gradient(circle at 10% 15%,#ffe1ed,transparent 35%),
+ radial-gradient(circle at 10% 15%,#ffe1ed,transparent 36%),
  radial-gradient(circle at 90% 75%,#fbd8e6,transparent 40%),
  #fff8fb;
 }
-#hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9}
+#hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10}
 .heart{position:absolute;bottom:-40px;animation:floatUp linear forwards}
 @keyframes floatUp{
  0%{transform:translateY(0);opacity:0}
@@ -31,6 +31,23 @@ button{font:inherit;cursor:pointer}
  from{opacity:0;transform:translateY(14px)}
  to{opacity:1;transform:translateY(0)}
 }
+#welcome{
+ position:fixed;inset:0;z-index:9999;
+ background:linear-gradient(145deg,#fff0f6,#f8cddd,#fff5f9);
+ display:flex;align-items:center;justify-content:center;
+ text-align:center;padding:25px;
+}
+.welcome-inner{max-width:480px;animation:appear 1s ease}
+.welcome-heart{font-size:65px;animation:pulse 1.5s infinite}
+.welcome-label{letter-spacing:3px;color:#b87992;font-size:11px;margin-top:25px}
+.welcome-title{color:#d45e87;font-size:clamp(36px,8vw,52px);font-weight:normal;line-height:1.25}
+.welcome-text{color:#87556b;line-height:1.9;margin:22px 0 28px}
+.btn{
+ border:0;border-radius:28px;padding:14px 23px;
+ color:white;background:linear-gradient(135deg,#ef91b0,#d85e87);
+ box-shadow:0 6px 20px #d85e872d;transition:.2s;
+}
+.btn:hover{transform:translateY(-2px)}
 .hero{
  min-height:100svh;display:flex;align-items:center;justify-content:center;
  text-align:center;padding:25px;
@@ -45,12 +62,6 @@ button{font:inherit;cursor:pointer}
 h1{font-size:clamp(40px,9vw,70px);line-height:1.15;font-weight:normal;color:#d45e87;margin:12px 0}
 .amp{font-style:italic;color:#d9a0b5}
 .hero p{max-width:470px;margin:24px auto;line-height:2;font-size:17px;color:#966c7e}
-.btn{
- border:0;border-radius:28px;padding:14px 23px;
- color:white;background:linear-gradient(135deg,#ef91b0,#d85e87);
- box-shadow:0 6px 20px #d85e872d;transition:.2s;
-}
-.btn:hover{transform:translateY(-2px)}
 .hint{font-size:11px;letter-spacing:2px;color:#c49aaa;margin-top:30px}
 section{padding:68px 20px}
 .container{max-width:850px;margin:auto}
@@ -86,7 +97,7 @@ h2{text-align:center;font-weight:normal;color:#d06489;font-size:clamp(29px,6vw,4
 }
 .disc.playing{animation:spin 5s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-audio{width:100%;margin:18px 0;accent-color:#d95f88}
+audio{display:block;width:100%;margin:18px 0;accent-color:#d95f88}
 .memories{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 .memory{padding:23px 15px;text-align:center;background:#ffffffb9;border-radius:20px;border:1px solid white}
 .memory .icon{font-size:30px}
@@ -106,6 +117,18 @@ footer{text-align:center;padding:25px;font-size:11px;letter-spacing:2px;color:#b
 <body>
 <div class="bg"></div>
 <div id="hearts"></div>
+<div id="welcome">
+ <div class="welcome-inner">
+  <div class="welcome-heart">💗</div>
+  <div class="welcome-label">SADECE İKİNİZE ÖZEL</div>
+  <h1 class="welcome-title">Muhammet<br>& Gökçe</h1>
+  <p class="welcome-text">
+   Senin için küçük bir sürpriz hazırladım...<br>
+   Hazır mısın? 💌
+  </p>
+  <button class="btn" id="enterButton" onclick="startStory()">Hikâyemize gir ❤️</button>
+ </div>
+</div>
 <header class="hero">
  <div class="panel">
   <div class="tag">Küçük bir sürpriz, sana özel</div>
@@ -172,11 +195,11 @@ footer{text-align:center;padding:25px;font-size:11px;letter-spacing:2px;color:#b
    <div class="disc" id="disc">♫</div>
    <div class="music-title">Ay Tenli Kadın</div>
    <div class="music-sub">Ufuk Beydemir · Muhammet ♡ Gökçe</div>
-   <audio id="song" controls autoplay preload="auto">
+   <audio id="song" controls preload="metadata">
     <source src="Ufuk-Beydemir-Ay-Tenli-Kadin.mp3" type="audio/mpeg">
     Tarayıcın ses dosyasını oynatamıyor.
    </audio>
-   <p style="font-size:13px;line-height:1.8;color:#a17a8b">Şarkıyı başlatmak için oynat tuşuna bas. ♡</p>
+   <p style="font-size:13px;line-height:1.8;color:#a17a8b">Müzik başlamazsa buradaki oynat tuşuna bas. ♡</p>
   </div>
  </div>
 </section>
@@ -218,6 +241,20 @@ footer{text-align:center;padding:25px;font-size:11px;letter-spacing:2px;color:#b
 </section>
 <footer>MUHAMMET ♡ GÖKÇE · SEVGİYLE HAZIRLANDI</footer>
 <script>
+function startStory(){
+ const welcome=document.getElementById('welcome');
+ const song=document.getElementById('song');
+ welcome.style.display='none';
+ window.scrollTo(0,0);
+ if(song){
+  song.play().then(function(){
+   document.getElementById('disc').classList.add('playing');
+  }).catch(function(){
+   // Tarayıcı sesi engellerse müzik kutusundan elle başlatılabilir.
+  });
+ }
+ makeHearts(15);
+}
 function goTo(id){
  const el=document.getElementById(id);
  if(el)el.scrollIntoView({behavior:'smooth'});
