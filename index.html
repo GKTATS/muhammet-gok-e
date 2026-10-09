@@ -11,88 +11,210 @@
 body {
   margin: 0;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff0f5;
-  font-family: Georgia, serif;
+  background: linear-gradient(145deg, #fff0f5, #ffe0eb, #fff7fa);
   color: #754052;
-  text-align: center;
-  padding: 20px;
+  font-family: Georgia, serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 15px;
+  overflow-x: hidden;
 }
 .card {
   width: 100%;
-  max-width: 500px;
-  background: #ffffff;
-  padding: 35px 25px;
-  border-radius: 25px;
-  box-shadow: 0 10px 35px #e8b8c8;
+  max-width: 520px;
+  background: rgba(255,255,255,0.88);
+  padding: 38px 25px;
+  border: 1px solid #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 15px 50px rgba(194,91,125,0.16);
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
-.heart {
+.top-heart {
   font-size: 55px;
-  animation: beat 1.2s infinite;
+  animation: heartbeat 1.5s infinite;
 }
 h1 {
-  color: #d85b85;
-  font-size: 34px;
+  font-size: clamp(30px, 8vw, 43px);
+  color: #d65f86;
+  margin: 16px 0 10px;
 }
-p {
-  line-height: 1.8;
+.subtitle {
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #b87990;
+  text-transform: uppercase;
+}
+.intro {
+  font-size: 17px;
+  line-height: 1.9;
+  margin: 24px 0;
 }
 button {
-  background: #e77b9e;
-  color: white;
   border: none;
-  border-radius: 25px;
-  padding: 13px 24px;
+  padding: 15px 24px;
+  background: linear-gradient(135deg, #e982a4, #d85d86);
+  color: white;
+  border-radius: 30px;
   font-size: 16px;
+  font-family: inherit;
   cursor: pointer;
-  margin-top: 15px;
+  box-shadow: 0 6px 18px rgba(216,93,134,0.2);
+  transition: transform .2s;
+}
+button:hover {
+  transform: translateY(-2px);
 }
 #letter {
   display: none;
-  margin-top: 25px;
-  padding: 18px;
-  background: #fff0f5;
-  border-radius: 15px;
-  line-height: 1.9;
+  margin-top: 28px;
+  padding: 23px 18px;
+  background: #fff1f6;
+  border: 1px solid #f8d5e1;
+  border-radius: 20px;
+  animation: appear .7s ease;
 }
-@keyframes beat {
-  50% { transform: scale(1.15); }
+#letter h2 {
+  color: #d65f86;
+  font-size: 27px;
+}
+#letter p {
+  font-size: 16px;
+  line-height: 2;
+}
+.signature {
+  color: #d65f86;
+  font-size: 19px !important;
+  font-weight: bold;
+}
+.surprise {
+  display: none;
+  margin-top: 20px;
+  animation: appear .7s ease;
+}
+.surprise p {
+  color: #d65f86;
+  font-size: 20px !important;
+}
+.heart {
+  position: fixed;
+  bottom: -40px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1;
+  animation: floatUp linear forwards;
+}
+.footer {
+  margin-top: 28px;
+  font-size: 12px;
+  color: #bd8b9d;
+  letter-spacing: 1px;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% { opacity: .65; }
+  100% {
+    transform: translateY(-110vh) rotate(35deg);
+    opacity: 0;
+  }
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 400px) {
+  .card { padding: 30px 18px; }
+  .intro { font-size: 16px; }
 }
 </style>
 </head>
 <body>
 <div class="card">
-  <div class="heart">💗</div>
+  <div class="top-heart">💗</div>
+  <div class="subtitle">Küçük bir hikâye, güzel bir his</div>
   <h1>Muhammet & Gökçe</h1>
-  <p>
-    Bazı insanlar hayatına girer<br>
-    ve her şeyi güzelleştirir...
-  </p>
-  <button onclick="openLetter()">
+  <div class="intro">
+    Bazen biri gelir...<br>
+    sıradan günleri güzelleştirir,<br>
+    küçük anları unutulmaz yapar. 🌷
+  </div>
+  <button id="letterButton" onclick="openLetter()">
     Sana bir mektubum var 💌
   </button>
   <div id="letter">
     <h2>Canım Gökçe ❤️</h2>
     <p>
-      Bazen kelimeler hissettiklerimizi anlatmaya yetmez.
-      Ama bilmeni isterim ki seninle geçen her an benim için
-      çok özel. Gülüşün günümü güzelleştiriyor,
-      varlığın kalbime huzur veriyor.
+      Sana söylemek istediğim çok şey var ama
+      bazen en güzel hisler kelimelere sığmıyor.
     </p>
     <p>
-      Bu küçük sayfa, sana olan güzel hislerimin
-      minicik bir hatırası olsun. 💗
+      Seninle gülmek, birlikte geçirilen küçücük
+      anları bile hatırlamak ve yüzündeki o güzel
+      gülümsemeyi görmek benim için çok kıymetli.
     </p>
-    <p><strong>İyi ki varsın. ❤️</strong></p>
-    <p>— Muhammet</p>
+    <p>
+      Belki bu sadece küçük bir internet sayfası
+      ama içinde sana ayırdığım kocaman bir yer var.
+      Açtığında yüzünde küçücük de olsa bir gülümseme
+      oluşsun istedim. 💗
+    </p>
+    <p class="signature">
+      İyi ki varsın, Gökçe. ❤️
+    </p>
+    <button onclick="showSurprise()">
+      Bir şey daha var... ✨
+    </button>
+    <div class="surprise" id="surprise">
+      <p>💖</p>
+      <p>
+        Bu sayfanın en güzel yanı,<br>
+        senin için yapılmış olması.
+      </p>
+      <p class="signature">Senden bir gülümseme yeter. 🌸</p>
+    </div>
+  </div>
+  <div class="footer">
+    MUHAMMET ❤️ GÖKÇE
   </div>
 </div>
 <script>
 function openLetter() {
   document.getElementById("letter").style.display = "block";
+  document.getElementById("letterButton").style.display = "none";
 }
+function showSurprise() {
+  document.getElementById("surprise").style.display = "block";
+  makeHearts(14);
+}
+function makeHearts(count) {
+  const symbols = ["💗", "💕", "💖", "♡", "🌸"];
+  for (let i = 0; i < count; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (16 + Math.random() * 22) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8500);
+  }
+}
+setInterval(() => makeHearts(2), 2500);
 </script>
 </body>
 </html>
