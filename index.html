@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammet ❤️ Gökçe</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff0f5;
+  font-family: Georgia, serif;
+  color: #754052;
+  text-align: center;
+  padding: 20px;
+}
+.card {
+  width: 100%;
+  max-width: 500px;
+  background: #ffffff;
+  padding: 35px 25px;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px #e8b8c8;
+}
+.heart {
+  font-size: 55px;
+  animation: beat 1.2s infinite;
+}
+h1 {
+  color: #d85b85;
+  font-size: 34px;
+}
+p {
+  line-height: 1.8;
+}
+button {
+  background: #e77b9e;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 13px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+#letter {
+  display: none;
+  margin-top: 25px;
+  padding: 18px;
+  background: #fff0f5;
+  border-radius: 15px;
+  line-height: 1.9;
+}
+@keyframes beat {
+  50% { transform: scale(1.15); }
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="heart">💗</div>
+  <h1>Muhammet & Gökçe</h1>
+  <p>
+    Bazı insanlar hayatına girer<br>
+    ve her şeyi güzelleştirir...
+  </p>
+  <button onclick="openLetter()">
+    Sana bir mektubum var 💌
+  </button>
+  <div id="letter">
+    <h2>Canım Gökçe ❤️</h2>
+    <p>
+      Bazen kelimeler hissettiklerimizi anlatmaya yetmez.
+      Ama bilmeni isterim ki seninle geçen her an benim için
+      çok özel. Gülüşün günümü güzelleştiriyor,
+      varlığın kalbime huzur veriyor.
+    </p>
+    <p>
+      Bu küçük sayfa, sana olan güzel hislerimin
+      minicik bir hatırası olsun. 💗
+    </p>
+    <p><strong>İyi ki varsın. ❤️</strong></p>
+    <p>— Muhammet</p>
+  </div>
+</div>
+<script>
+function openLetter() {
+  document.getElementById("letter").style.display = "block";
+}
+</script>
+</body>
+</html>
