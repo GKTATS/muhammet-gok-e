@@ -365,9 +365,15 @@ function openLetter(){
  for(let i=0;i<18;i++)makeHeart();
 }
 function showSecret(){
- const el=document.getElementById('secretText');
- el.style.display='block';
- for(let i=0;i<15;i++)makeHeart();
+  const el = document.getElementById('secretText');
+  if (el) {
+    el.style.display = 'block';
+  }
+  try {
+    for (let i = 0; i < 15; i++) makeHeart();
+  } catch (error) {
+    console.log(error);
+  }
 }
 function makeHeart(){
  const el=document.createElement('span');
